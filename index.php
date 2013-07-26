@@ -1,7 +1,7 @@
 <?php
 	include('classes/command.class.php');
 
-	$command = new Command("ping 192.168.100.124 -c 2");
+	$command = new Command("ping 192.168.100.124 -c 6");
 
 
 	echo $command->getCommand();
@@ -10,4 +10,6 @@
 	echo '<pre>';
 	print_r($command->getResults());
 	echo '</pre>';
+
+	echo $command->getExecutionHumanizedTime();
 ?>
