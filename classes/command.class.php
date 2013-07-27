@@ -6,11 +6,21 @@
 		var $numResults;
 		var $initTime;
 		var $endTime;
+		var $realTime;
+		var $file = 'commands.txt';
 
 
 		function __construct($theCommand = ""){
 			$this->setCommand($theCommand);
-			$this->processCommand($theCommand);
+				
+		}
+
+		function setRealTime($theRealTime = false){
+			$this->realTime = $theRealTime;
+		}
+
+		function getRealTime(){
+			$this->realTime;
 		}
 
 		function setCommand($theCommand = ""){
@@ -21,12 +31,19 @@
 			return $this->command;
 		}
 
-		function processCommand($theCommand){
-			$this->initTime = microtime();
+		function processCommand(){
+
+			$theCommand = $this->getCommand();
+
+			if($this->realTime)
+				$theCommand = $theCommand . ' > ' . $this->file;
+
+			$this->initTime = microtime(true);
 			exec($theCommand, $result);
-			$this->endTime = microtime();
-
-
+			$this->endTime = microtime(true);
+			
+			if($this->realTime)
+				file_put_contents($this->file, "EOF\n", FILE_APPEND | LOCK_EX);
 			$this->setResults($result);
 		}
 
