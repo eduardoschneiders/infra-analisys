@@ -1,9 +1,11 @@
 <?php
+	header( 'Content-type: text/html; charset=utf-8' );
+	echo '<div id="teste">loading: </div>';
 	include('classes/command.class.php');
-
-	//$command = new Command("ping www.tca.com.br -c 120");
-	$command = new Command("ping www.terra.com.br -c 10");
-	$command->setRealTime(false);
+	
+	$command = new Command();
+	$command->setCommand("ping www.terra.com.br -c 5");
+	$command->setRealTime(true);
 	$command->processCommand();
 	echo  $command->getCommand();
 	echo '<br />';

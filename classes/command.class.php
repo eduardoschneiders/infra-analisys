@@ -9,12 +9,6 @@
 		var $realTime;
 		var $file = 'commands.txt';
 
-
-		function __construct($theCommand = ""){
-			$this->setCommand($theCommand);
-				
-		}
-
 		function setRealTime($theRealTime = false){
 			$this->realTime = $theRealTime;
 		}
@@ -35,15 +29,46 @@
 
 			$theCommand = $this->getCommand();
 
-			if($this->realTime)
+			if($this->realTime){
 				$theCommand = $theCommand . ' > ' . $this->file;
+				
+				$html = '
+                                        <div id="chamaScript">
+						<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
+						<script type="text/javascript">
+							function teste(){
+								$("#teste").append(".");
+							}
+							var intervalo1 = window.setInterval(teste, 500);
+                                                </script>
+                                        </div>
+                                ';
+				
+                                echo $html;
+				ob_flush();
+                                flush();
+                                sleep(1);
+
+			}
 
 			$this->initTime = microtime(true);
 			exec($theCommand, $result);
 			$this->endTime = microtime(true);
 			
 			if($this->realTime)
-				file_put_contents($this->file, "EOF\n", FILE_APPEND | LOCK_EX);
+					echo '
+						<script>
+							$(document).ready(function(){
+								alert("finished");
+								intervalo1 = window.clearInterval(intervalo1);
+							});
+						</script>
+					';
+				ob_flush();
+                                flush();
+                                sleep(1);
+
+				//file_put_contents($this->file, "EOF\n", FILE_APPEND | LOCK_EX);
 			$this->setResults($result);
 		}
 
