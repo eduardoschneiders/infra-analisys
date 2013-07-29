@@ -1,6 +1,6 @@
 <?php
 	header( 'Content-type: text/html; charset=utf-8' );
-	echo '<div id="teste">loading: </div>';
+	echo '<div id="result">loading: </div>';
 
 	include('classes/command.class.php');
 
@@ -9,7 +9,7 @@
 
 	$command = new Command();
 	$command->setCommand("traceroute www.tca.com.br");
-	$command->setFile("commandsDone_" . $md5Time . '.txt');
+	$command->setFileDone("commandsDone_" . $md5Time . '.txt');
 	$command->createSyncFile("commandsSynced_" . $md5Time . '.txt');
 	$command->setRealTime(true);
 	$command->processCommand();

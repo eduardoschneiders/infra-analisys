@@ -7,18 +7,20 @@
 		var $initTime;
 		var $endTime;
 		var $realTime;
-		var $file = 'commandstxt';
+		var $fileDone = 'commandsDone.txt';
+		var $fileSynced = 'commandsSynced.txt';
 		var $filePath = 'generatedFiles/';
 
 		function setRealTime($theRealTime = false){
 			$this->realTime = $theRealTime;
 		}
 
-		function setFile($theFile = NULL){
-			$this->file = $theFile;
+		function setFileDone($theFile = NULL){
+			$this->fileDone = $theFile;
 		}
 		
 		function createSyncFile($fileName = NULL){
+			$this->fileSynced = $filename;
 			$f = fopen($this->filePath . $fileName, 'w'); 
 			fwrite($f,''); 
 			fclose($f); 
@@ -41,26 +43,24 @@
 			$theCommand = $this->getCommand();
 
 			if($this->realTime){
-				chmod($this->filePath . $this->file, "0777");
-				echo $this->filePath . $this->file;
-				$theCommand = $theCommand . ' > ' . $this->filePath . $this->file;
+				chmod($this->filePath . $this->fileDone, "0777");
+				
+				$theCommand = $theCommand . ' > ' . $this->filePath . $this->fileDone;
 				
 				$html = '
-                                        <div id="chamaScript">
-						<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
-						<script type="text/javascript">
-							function teste(){
-								$("#teste").append(".");
-							}
-							var intervalo1 = window.setInterval(teste, 500);
-                                                </script>
-                                        </div>
-                                ';
+					<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
+					<script type="text/javascript">
+						function loadResults(){
+							$("#result").append(".");
+						}
+						var intervalo1 = window.setInterval(loadResults, 500);
+					</script>
+                ';
 				
-                                echo $html;
+                echo $html;
 				ob_flush();
-                                flush();
-                                sleep(1);
+                flush();
+                sleep(1);
 
 			}
 
