@@ -9,5 +9,6 @@ $fNumDone = count($fDone);
 $fNumSynced = count($fSynced);
 
 if($fNumDone && $fNumDone != $fNumSynced){
-	echo 'hasdouh';
+	echo $fDone[$fNumSynced];
+	file_put_contents('generatedFiles/' . $_GET['fSynced'], $fDone[$fNumSynced], FILE_APPEND | LOCK_EX);
 }
