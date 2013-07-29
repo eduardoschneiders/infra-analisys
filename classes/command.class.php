@@ -7,12 +7,23 @@
 		var $initTime;
 		var $endTime;
 		var $realTime;
-		var $file = 'commands.txt';
+		var $file = 'commandstxt';
+		var $filePath = 'generatedFiles/';
 
 		function setRealTime($theRealTime = false){
 			$this->realTime = $theRealTime;
 		}
 
+		function setFile($theFile = NULL){
+			$this->file = $theFile;
+		}
+		
+		function createSyncFile($fileName = NULL){
+			$f = fopen($this->filePath . $fileName, 'w'); 
+			fwrite($f,''); 
+			fclose($f); 
+		}
+		
 		function getRealTime(){
 			$this->realTime;
 		}
@@ -30,7 +41,9 @@
 			$theCommand = $this->getCommand();
 
 			if($this->realTime){
-				$theCommand = $theCommand . ' > ' . $this->file;
+				chmod($this->filePath . $this->file, "0777");
+				echo $this->filePath . $this->file;
+				$theCommand = $theCommand . ' > ' . $this->filePath . $this->file;
 				
 				$html = '
                                         <div id="chamaScript">
@@ -55,20 +68,20 @@
 			exec($theCommand, $result);
 			$this->endTime = microtime(true);
 			
-			if($this->realTime)
-					echo '
-						<script>
-							$(document).ready(function(){
-								alert("finished");
-								intervalo1 = window.clearInterval(intervalo1);
-							});
-						</script>
-					';
+			if($this->realTime){
+				echo '
+					<script>
+						$(document).ready(function(){
+							intervalo1 = window.clearInterval(intervalo1);
+						});
+					</script>
+				';
 				ob_flush();
                                 flush();
                                 sleep(1);
 
-				//file_put_contents($this->file, "EOF\n", FILE_APPEND | LOCK_EX);
+
+			}
 			$this->setResults($result);
 		}
 
