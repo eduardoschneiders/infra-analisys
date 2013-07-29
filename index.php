@@ -8,7 +8,7 @@
 
 
 	$command = new Command();
-	$command->setCommand("traceroute www.tca.com.br");
+	$command->setCommand("ping www.tca.com.br -c 40");
 	$command->setFileDone("commandsDone_" . $md5Time . '.txt');
 	$command->createSyncFile("commandsSynced_" . $md5Time . '.txt');
 	$command->setRealTime(true);

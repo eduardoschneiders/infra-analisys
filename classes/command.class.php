@@ -20,8 +20,9 @@
 		}
 		
 		function createSyncFile($fileName = NULL){
-			$this->fileSynced = $filename;
+			$this->fileSynced = $fileName;
 			$f = fopen($this->filePath . $fileName, 'w'); 
+			chmod($this->filePath . $this->fileSynced, 0777);
 			fwrite($f,''); 
 			fclose($f); 
 		}
@@ -43,7 +44,13 @@
 			$theCommand = $this->getCommand();
 
 			if($this->realTime){
-				chmod($this->filePath . $this->fileDone, "0777");
+				
+
+				$f = fopen($this->filePath . $this->fileDone, 'w'); 
+				fwrite($f,''); 
+				fclose($f); 
+
+				chmod($this->filePath . $this->fileDone, 0777);
 				
 				$theCommand = $theCommand . ' > ' . $this->filePath . $this->fileDone;
 				
@@ -51,7 +58,16 @@
 					<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
 					<script type="text/javascript">
 						function loadResults(){
-							$("#result").append(".");
+							$.ajax({
+							   type: "GET",
+							   url: "sync.php",
+							   data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
+							   success: function(txt){
+								 $("#result").append(txt);
+								 
+							   }
+							 });
+							
 						}
 						var intervalo1 = window.setInterval(loadResults, 500);
 					</script>
