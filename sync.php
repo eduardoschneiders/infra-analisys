@@ -1,14 +1,16 @@
 <?php
 $fDone = $_GET['fDone'];
 $fSynced = $_GET['fSynced'];
-
-echo '<p>' . filesize('generatedFiles/' . $fSynced) . '</p>';
-
+//echo '1321';
+echo '<p>' . filesize('generatedFiles/' . $fDone) . '</p>';
+ob_flush();
+flush();
 $fDone = file('generatedFiles/' . $fDone);
 $fSynced = file('generatedFiles/' . $fSynced);
 
 
 $fNumDone = count($fDone);
+
 $fNumSynced = count($fSynced);
 
 if($fNumDone && $fNumDone != $fNumSynced){
