@@ -12,8 +12,6 @@ $fSynced = file('generatedFiles/' . $fSynced);
 $fNumDone = count($fDone);
 
 $fNumSynced = count($fSynced);
-echo '<p>'.$fNumDone.'</p>';
-echo '<p>'.$fNumSynced.'</p>';
 
 if($fNumDone == $fNumSynced){
 

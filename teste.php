@@ -20,8 +20,6 @@
 	}
 
 	function loadResults(){
-		alert("sim");
-		
 		$.ajax({
 		   type: "GET",
 		   url: "sync.php",
