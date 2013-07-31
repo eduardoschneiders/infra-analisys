@@ -16,13 +16,13 @@ $fNumSynced = count($fSynced);
 if($fNumDone == $fNumSynced){
 
 	echo '
-					<script type="text/javascript">
+			<script type="text/javascript">
 
-						intervalo1 = window.clearInterval(intervalo1);
-						bla = window.clearInterval(bla);
+				intervalo1 = window.clearInterval(carregaResultados);
+				bla = window.clearInterval(bla);
 						
 
-					</script>
+			</script>
 
 	';
 }

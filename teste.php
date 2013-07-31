@@ -4,11 +4,10 @@
 <script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
 <script type="text/javascript">
 
-	function finish(){
-		var bla = window.setInterval(teste, 500);
-	};
+	
+	var bla;
 
-	function teste(){
+	function closeFiles(){
 		$.ajax({
 		   type: "GET",
 		   url: "close.php",
@@ -36,19 +35,20 @@
 		   url: "exec.php",
 		   data: "",
 		   success: function(txt){
-			finish();
+			bla = window.setInterval(closeFiles, 500);
 			$("#result2").append(txt);
 		   }
 		 });
 	};
 
-	var intervalo1 = window.setInterval(loadResults, 500);
+	var carregaResultados = window.setInterval(loadResults, 500);
 	loadResults2();
+
 </script>
 
 <div id="result">Loading: </div>
 <div id="result2">Loading: </div>
-<div id="final">Loading: </div>
+<div id="final">Final: </div>
 
 <?php
 	ob_flush();
