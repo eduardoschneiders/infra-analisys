@@ -41,7 +41,7 @@
 		 });
 	};
 
-	var carregaResultados = window.setInterval(loadResults, 500);
+	var carregaResultados = window.setInterval(loadResults, 200);
 	loadResults2();
 
 </script>

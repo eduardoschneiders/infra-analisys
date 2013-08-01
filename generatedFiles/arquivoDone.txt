@@ -1,15 +1,11 @@
-PING tca.com.br (186.193.160.84) 56(84) bytes of data.
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=1 ttl=63 time=1.23 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=2 ttl=63 time=0.435 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=3 ttl=63 time=0.524 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=4 ttl=63 time=0.724 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=5 ttl=63 time=0.536 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=6 ttl=63 time=0.497 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=7 ttl=63 time=0.497 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=8 ttl=63 time=0.455 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=9 ttl=63 time=0.558 ms
-64 bytes from www.tca.com.br (186.193.160.84): icmp_req=10 ttl=63 time=0.528 ms
-
---- tca.com.br ping statistics ---
-10 packets transmitted, 10 received, 0% packet loss, time 9004ms
-rtt min/avg/max/mdev = 0.435/0.599/1.237/0.225 ms
+traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
+ 1  * * w2k3-isa.tca.local (192.168.100.254)  1.054 ms
+ 2  tcamp-aces01.tqr.tca.net.br (186.193.160.1)  1.417 ms tca-bord03.tqr.tca.net.br (186.193.172.215)  1.831 ms  1.814 ms
+ 3  tca-bord01.tqr.tca.net.br (186.193.172.209)  1.788 ms  1.749 ms  1.744 ms
+ 4  tca-bord01.tqr.tca.net.br (186.193.172.209)  1.721 ms border01-ige2-1934-giga-poa.stech.net.br (187.84.223.93)  2.908 ms  2.872 ms
+ 5  xgborder-rs-pae-01-xe-0-0-0.3300.stech.net.br (200.152.253.252)  3.277 ms  3.251 ms  3.217 ms
+ 6  xgborder-rs-pae-01-xe-0-0-0.3300.stech.net.br (200.152.253.252)  3.215 ms  2.694 ms  2.680 ms
+ 7  as15169.sp.ptt.br (187.16.216.55)  23.310 ms 209.85.243.200 (209.85.243.200)  23.269 ms  24.193 ms
+ 8  72.14.233.89 (72.14.233.89)  24.177 ms 209.85.243.200 (209.85.243.200)  23.738 ms 72.14.233.89 (72.14.233.89)  24.136 ms
+ 9  64.233.175.54 (64.233.175.54)  23.465 ms 72.14.233.93 (72.14.233.93)  23.431 ms 64.233.175.58 (64.233.175.58)  30.448 ms
+10  64.233.175.58 (64.233.175.58)  30.021 ms google-public-dns-a.google.com (8.8.8.8)  24.008 ms  23.978 ms

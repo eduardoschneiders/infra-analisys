@@ -1,7 +1,2 @@
 <?php
-exec("ping tca.com.br -c 10 > generatedFiles/arquivoDone.txt");
-
-echo '
-					
-
-	';
+exec("traceroute 8.8.8.8 > generatedFiles/arquivoDone.txt");
