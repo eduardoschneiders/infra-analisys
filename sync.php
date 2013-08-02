@@ -1,8 +1,7 @@
 <?php
 $fDone = $_GET['fDone'];
 $fSynced = $_GET['fSynced'];
-//echo '1321';
-echo '<p>' . filesize('generatedFiles/' . $fDone) . '</p>';
+
 ob_flush();
 flush();
 $fDone = file('generatedFiles/' . $fDone);
@@ -24,17 +23,26 @@ $filename = 'generatedFiles/' . $_GET['fDone'];
 
 $fh = fopen($filename, 'r');
 $line = 1;
+echo $fNumSynced;
 
 while (($buffer = fgets($fh)) !== FALSE) {
+	echo '<p>' . $line . '</p>';
 	if ($line == $fNumSynced + 1) {
+		echo "here";
+		echo $buffer;
+		echo "here";
 		$breakLine = FALSE;
-       	if(strpos($buffer, "\n")) 
-	    	$breakLine = TRUE;
+       	if(strpos($buffer, "\n")){
+       		$breakLine = TRUE;
+       		echo 'askjdfl';
+       	}
+	    	
        break;
    }   
    $line++;
 }
 
+exit();
 if(($fNumDone && $fNumDone != $fNumSynced && $breakLine)){
 	$filename = 'generatedFiles/' . $_GET['fSynced'];
 	echo $fDone[$fNumSynced];
