@@ -52,50 +52,60 @@
 
 				chmod($this->filePath . $this->fileDone, 0777);
 				
-				$theCommand = $theCommand . ' > ' . $this->filePath . $this->fileDone;
 				
 				$html = '
 					<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
 					<script type="text/javascript">
-						function loadResults(){
+
+						
+						var closeFiles;
+
+						function closeFiles(){
+							$.ajax({
+							   type: "GET",
+							   url: "close.php",
+							   data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
+							   success: function(txt){
+								$("#closeFiles").html(txt);
+							   }
+							 });
+						}
+
+						function syncFiles(){
 							$.ajax({
 							   type: "GET",
 							   url: "sync.php",
 							   data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
 							   success: function(txt){
-								 $("#result").append(txt);
-								 
+								$("#sincronizacao").html(txt);
 							   }
 							 });
+						};
+						function execCommands(){
 							
-						}
-						var intervalo1 = window.setInterval(loadResults, 500);
+							$.ajax({
+							   type: "GET",
+							   url: "exec.php",
+							   data: "command=' . $this->getCommand() . '&file=' . $this->fileDone . '",
+							   success: function(txt){
+								closeFiles = window.setInterval(closeFiles, 500);
+							   }
+							 });
+						};
+
+						var syncFiles = window.setInterval(syncFiles, 200);
+						execCommands();
+
 					</script>
+
+					<div id="sincronizacao"></div>
+					<div id="closeFiles"></div>
                 ';
 				
                 echo $html;
 				ob_flush();
                 flush();
                 sleep(1);
-
-			}
-
-			$this->initTime = microtime(true);
-			exec($theCommand, $result);
-			$this->endTime = microtime(true);
-			
-			if($this->realTime){
-				echo '
-					<script>
-						$(document).ready(function(){
-							intervalo1 = window.clearInterval(intervalo1);
-						});
-					</script>
-				';
-				ob_flush();
-                                flush();
-                                sleep(1);
-
 
 			}
 			$this->setResults($result);

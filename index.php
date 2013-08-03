@@ -13,6 +13,7 @@
 	$command->createSyncFile("commandsSynced_" . $md5Time . '.txt');
 	$command->setRealTime(true);
 	$command->processCommand();
+	exit();
 	echo  $command->getCommand();
 	echo '<br />';
 	echo $command->getNumResults();
