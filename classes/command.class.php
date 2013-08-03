@@ -73,13 +73,20 @@
 
 						function syncFiles(){
 							$.ajax({
-							   type: "GET",
-							   url: "sync.php",
-							   data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
-							   success: function(txt){
-								$("#sincronizacao").html(txt);
-							   }
-							 });
+								type: "GET",
+								url: "sync.php",
+								data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
+								success: function(txt){
+									if(txt){
+										
+										ts = Math.round((new Date()).getTime() / 1000);
+										$("#sincronizacao").append("<li style=\"display: none;\" id=" + ts + ">" + txt + "</li>");	
+										$("#sincronizacao li#" + ts).fadeIn("slow");
+
+									}
+									
+								}
+							});
 						};
 						function execCommands(){
 							
@@ -98,7 +105,7 @@
 
 					</script>
 
-					<div id="sincronizacao"></div>
+					<ul id="sincronizacao"></ul>
 					<div id="closeFiles"></div>
                 ';
 				
