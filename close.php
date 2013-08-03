@@ -18,8 +18,8 @@ if($fNumDone == $fNumSynced){
 	echo '
 			<script type="text/javascript">
 
-				intervalo1 = window.clearInterval(carregaResultados);
-				bla = window.clearInterval(bla);
+				intervalo1 = window.clearInterval(syncFiles);
+				bla = window.clearInterval(closeFiles);
 						
 
 			</script>

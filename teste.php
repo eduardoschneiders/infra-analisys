@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
 	
-	var bla;
+	var closeFiles;
 
 	function closeFiles(){
 		$.ajax({
@@ -13,42 +13,40 @@
 		   url: "close.php",
 		   data: "fDone=arquivoDone.txt&fSynced=arquivoSynced.txt",
 		   success: function(txt){
-			$("#final").html(txt);
+			$("#closeFiles").html(txt);
 		   }
 		 });
 	}
 
-	function loadResults(){
+	function syncFiles(){
 		$.ajax({
 		   type: "GET",
 		   url: "sync.php",
 		   data: "fDone=arquivoDone.txt&fSynced=arquivoSynced.txt",
 		   success: function(txt){
-			$("#result").html(txt);
+			$("#sincronizacao").html(txt);
 		   }
 		 });
 	};
-	function loadResults2(){
+	function execCommands(){
 		
 		$.ajax({
 		   type: "GET",
 		   url: "exec.php",
-		   data: "",
+		   data: "command=ping www.tca.com.br -c 20&file=arquivoDone.txt",
 		   success: function(txt){
-			bla = window.setInterval(closeFiles, 500);
-			$("#result2").append(txt);
+			closeFiles = window.setInterval(closeFiles, 500);
 		   }
 		 });
 	};
 
-	var carregaResultados = window.setInterval(loadResults, 200);
-	loadResults2();
+	var syncFiles = window.setInterval(syncFiles, 200);
+	execCommands();
 
 </script>
 
-<div id="result">Loading: </div>
-<div id="result2">Loading: </div>
-<div id="final">Final: </div>
+<div id="sincronizacao"></div>
+<div id="closeFiles"></div>
 
 <?php
 	ob_flush();
