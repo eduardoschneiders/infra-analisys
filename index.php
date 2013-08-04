@@ -7,7 +7,7 @@
 
 
 	$command = new Command();
-	$command->setCommand("ping www.google.com -c 40");
+	$command->setCommand("traceroute www.welcome2japan.hk");
 	$command->setFileDone("commandsDone_" . $md5Time . '.txt');
 	$command->createSyncFile("commandsSynced_" . $md5Time . '.txt');
 	$command->setRealTime(true);

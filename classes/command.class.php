@@ -81,8 +81,7 @@
 										
 										ts = Math.round((new Date()).getTime() / 1000);
 										$("#sincronizacao").append("<li style=\"display: none;\" id=" + ts + ">" + txt + "</li>");	
-										$("#sincronizacao li#" + ts).fadeIn("slow");
-
+										$("#sincronizacao li#" + ts).fadeIn(350);
 									}
 									
 								}
@@ -100,7 +99,7 @@
 							 });
 						};
 
-						var syncFiles = window.setInterval(syncFiles, 200);
+						var syncFiles = window.setInterval(syncFiles, 500);
 						execCommands();
 
 					</script>
