@@ -99,7 +99,7 @@
 							 });
 						};
 
-						var syncFiles = window.setInterval(syncFiles, 500);
+						var syncFiles = window.setInterval(syncFiles, 1000);
 						execCommands();
 
 					</script>
