@@ -17,12 +17,11 @@ if($fNumDone == $fNumSynced){
 
 	echo '
 			<script type="text/javascript">
-
 				intervalo1 = window.clearInterval(syncFiles);
 				bla = window.clearInterval(closeFiles);
-						
-
 			</script>
-
 	';
+
+	unlink('generatedFiles/' . $_GET['fDone']);
+	unlink('generatedFiles/' . $_GET['fSynced']);
 }
