@@ -54,52 +54,16 @@
 				
 				
 				$html = '
-					<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>                       
+					<script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>
 					<script type="text/javascript">
-
 						
-						var closeFiles;
+						var closeFiles;'
+						
+						. $this->closeFiles() 
+						. $this->syncFiles() 
+						. $this->execCommands() .
 
-						function closeFiles(){
-							$.ajax({
-							   type: "GET",
-							   url: "close.php",
-							   data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
-							   success: function(txt){
-								$("#closeFiles").html(txt);
-							   }
-							 });
-						}
-
-						function syncFiles(){
-							$.ajax({
-								type: "GET",
-								url: "sync.php",
-								data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
-								success: function(txt){
-									if(txt){
-										
-										ts = Math.round((new Date()).getTime() / 1000);
-										$("#sincronizacao").append("<li style=\"display: none;\" id=" + ts + ">" + txt + "</li>");	
-										$("#sincronizacao li#" + ts).fadeIn(350);
-									}
-									
-								}
-							});
-						};
-						function execCommands(){
-							
-							$.ajax({
-							   type: "GET",
-							   url: "exec.php",
-							   data: "command=' . $this->getCommand() . '&file=' . $this->fileDone . '",
-							   success: function(txt){
-								closeFiles = window.setInterval(closeFiles, 500);
-							   }
-							 });
-						};
-
-						var syncFiles = window.setInterval(syncFiles, 1000);
+						'var syncFiles = window.setInterval(syncFiles, 1000);
 						execCommands();
 
 					</script>
@@ -115,6 +79,62 @@
 
 			}
 			$this->setResults($result);
+		}
+
+		function closeFiles(){
+			$html = '
+				function closeFiles(){
+					$.ajax({
+					   type: "GET",
+					   url: "close.php",
+					   data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
+					   success: function(txt){
+						$("#closeFiles").html(txt);
+					   }
+					 });
+				}
+			';
+
+			return $html;
+		}
+
+		function syncFiles(){
+			$html = '
+				function syncFiles(){
+					$.ajax({
+						type: "GET",
+						url: "sync.php",
+						data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
+						success: function(txt){
+							if(txt){
+								ts = Math.round((new Date()).getTime() / 1000);
+								$("#sincronizacao").append("<li style=\"display: none;\" id=" + ts + ">" + txt + "</li>");	
+								$("#sincronizacao li#" + ts).fadeIn(350);
+							}
+							
+						}
+					});
+				};
+			';
+
+			return $html;
+		}
+
+		function execCommands(){
+			$html = '
+				function execCommands(){
+					$.ajax({
+					   type: "GET",
+					   url: "exec.php",
+					   data: "command=' . $this->getCommand() . '&file=' . $this->fileDone . '",
+					   success: function(txt){
+						closeFiles = window.setInterval(closeFiles, 500);
+					   }
+					 });
+				};
+			';
+
+			return $html;
 		}
 
 		function setResults($theResults){
