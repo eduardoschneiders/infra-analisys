@@ -68,8 +68,12 @@
 
 					</script>
 
+					<div id="numCommands">
+						<span id="number">0</span> commands executed<span id="extra"> until now</span>!
+					</div>
 					<ul id="sincronizacao"></ul>
 					<div id="closeFiles"></div>
+					
                 ';
 				
                 echo $html;
@@ -107,6 +111,11 @@
 						data: "fDone=' . $this->fileDone . '&fSynced=' . $this->fileSynced . '",
 						success: function(txt){
 							if(txt){
+								var totalCommands = $("#numCommands #number").html();
+								totalCommands = parseInt(totalCommands);
+								var total = new Number(totalCommands + 1);
+								
+								$("#numCommands #number").html(total);
 								ts = Math.round((new Date()).getTime() / 1000);
 								$("#sincronizacao").append("<li style=\"display: none;\" id=" + ts + ">" + txt + "</li>");	
 								$("#sincronizacao li#" + ts).fadeIn(350);
