@@ -19,7 +19,9 @@ if($fNumDone == $fNumSynced){
 			<script type="text/javascript">
 				intervalo1 = window.clearInterval(syncFiles);
 				bla = window.clearInterval(closeFiles);
-				$("#numCommands #extra").html("");
+				$("#numCommands #extra").fadeOut("fast");
+				$("#processing").html("");
+				processing
 			</script>
 	';
 

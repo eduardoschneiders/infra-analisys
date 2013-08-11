@@ -71,6 +71,25 @@
 					<div id="numCommands">
 						<span id="number">0</span> commands executed<span id="extra"> until now</span>!
 					</div>
+					<style>
+						@keyframes blink {  
+						    0% { color: red; }
+						    100% { color: black; }
+						}
+						@-webkit-keyframes blink {
+						    0% { color: red; }
+						    100% { color: black; }
+						}
+						.blink {
+						    -webkit-animation: blink 0.5s linear infinite;
+						    -moz-animation: blink 0.5s linear infinite;
+						    -ms-animation: blink 0.5s linear infinite;
+						    -o-animation: blink 0.5s linear infinite;
+						    animation: blink 0.5s linear infinite;
+						} 
+
+					</style>
+					<div id="processing" class="blink">Processing</div>
 					<ul id="sincronizacao"></ul>
 					<div id="closeFiles"></div>
 					
