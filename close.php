@@ -20,6 +20,8 @@ if($fNumDone == $fNumSynced){
 				intervalo1 = window.clearInterval(syncFiles);
 				bla = window.clearInterval(closeFiles);
 				$("#numCommands #extra").fadeOut("fast");
+				$("#numCommands #extra").html("!");
+				$("#numCommands #extra").fadeIn("fast");	
 				$("#processing").html("");
 				processing
 			</script>

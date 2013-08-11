@@ -69,7 +69,7 @@
 					</script>
 
 					<div id="numCommands">
-						<span id="number">0</span> commands executed<span id="extra"> until now</span>!
+						<span id="number" style="font-weight: bold">0</span> commands executed<span id="extra"> until now!</span>
 					</div>
 					<style>
 						@keyframes blink {  
@@ -89,7 +89,7 @@
 						} 
 
 					</style>
-					<div id="processing" class="blink">Processing</div>
+					<div id="processing" style="font-weight: bold" class="blink">Processing:</div>
 					<ul id="sincronizacao"></ul>
 					<div id="closeFiles"></div>
 					
